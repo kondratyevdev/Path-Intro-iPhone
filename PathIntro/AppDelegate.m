@@ -1,20 +1,13 @@
-//
-//  AppDelegate.m
-//  PathIntro
-//
-//  Created by Dmitry Kondratyev on 29.04.13.
-//  Copyright (c) 2013 Dmitry Kondratyev. All rights reserved.
-//
-
 #import "AppDelegate.h"
+#import "ExampleViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = [[ExampleViewController alloc] init];
     [self.window makeKeyAndVisible];
     return YES;
 }
