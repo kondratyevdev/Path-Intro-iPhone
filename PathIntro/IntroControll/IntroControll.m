@@ -17,16 +17,10 @@
         [backgroundImage1 setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
         [self addSubview:backgroundImage1];
 
-        
         backgroundImage2 = [[UIImageView alloc] initWithFrame:frame];
         [backgroundImage2 setContentMode:UIViewContentModeScaleAspectFill];
         [backgroundImage2 setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
         [self addSubview:backgroundImage2];
-        
-        backgroundImage3 = [[UIImageView alloc] initWithFrame:frame];
-        [backgroundImage3 setContentMode:UIViewContentModeScaleAspectFill];
-        [backgroundImage3 setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
-        [self addSubview:backgroundImage3];
         
         //Initial shadow
         UIImageView *shadowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"shadow.png"]];
@@ -87,9 +81,9 @@
     if(scrollPhotoNumber != currentPhotoNum) {
         currentPhotoNum = scrollPhotoNumber;
         
-        backgroundImage1.image = currentPhotoNum != 0 ? [(IntroModel*)[pages objectAtIndex:currentPhotoNum-1] image] : nil;
-        backgroundImage2.image = [(IntroModel*)[pages objectAtIndex:currentPhotoNum] image];
-        backgroundImage3.image = currentPhotoNum+1 != [pages count] ? [(IntroModel*)[pages objectAtIndex:currentPhotoNum+1] image] : nil;
+        //backgroundImage1.image = currentPhotoNum != 0 ? [(IntroModel*)[pages objectAtIndex:currentPhotoNum-1] image] : nil;
+        backgroundImage1.image = [(IntroModel*)[pages objectAtIndex:currentPhotoNum] image];
+        backgroundImage2.image = currentPhotoNum+1 != [pages count] ? [(IntroModel*)[pages objectAtIndex:currentPhotoNum+1] image] : nil;
     }
     
     float offset =  scrollView.contentOffset.x - (currentPhotoNum * self.frame.size.width);
@@ -100,29 +94,28 @@
         pageControl.currentPage = 0;
         
         offset = self.frame.size.width - MIN(-offset, self.frame.size.width);
-        backgroundImage3.alpha = 0;
-        backgroundImage1.alpha = 1;
-        backgroundImage2.alpha = (offset / self.frame.size.width);
+        backgroundImage2.alpha = 0;
+        backgroundImage1.alpha = (offset / self.frame.size.width);
     
     //other
     } else if(offset != 0) {
-        
         //last
         if(scrollPhotoNumber == pages.count-1) {
             pageControl.currentPage = pages.count-1;
             
-            backgroundImage2.alpha = 1.0 - (offset / self.frame.size.width);
+            backgroundImage1.alpha = 1.0 - (offset / self.frame.size.width);
         } else {
             
             pageControl.currentPage = (offset > self.frame.size.width/2) ? currentPhotoNum+1 : currentPhotoNum;
             
-            backgroundImage3.alpha = offset / self.frame.size.width;
-            backgroundImage1.alpha = 1.0 - backgroundImage3.alpha;
+            backgroundImage2.alpha = offset / self.frame.size.width;
+            backgroundImage1.alpha = 1.0 - backgroundImage2.alpha;
         }
     //stable
     } else {
         pageControl.currentPage = currentPhotoNum;
-        backgroundImage1.alpha = backgroundImage3.alpha = 0;
+        backgroundImage1.alpha = 1;
+        backgroundImage2.alpha = 0;
     }
 }
 

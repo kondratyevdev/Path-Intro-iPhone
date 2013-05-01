@@ -4,7 +4,6 @@
 @interface IntroControll : UIView<UIScrollViewDelegate> {
     UIImageView *backgroundImage1;
     UIImageView *backgroundImage2;
-    UIImageView *backgroundImage3;
     
     UIScrollView *scrollView;
     UIPageControl *pageControl;
