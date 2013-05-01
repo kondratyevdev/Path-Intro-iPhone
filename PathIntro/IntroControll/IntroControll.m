@@ -13,18 +13,18 @@
         self.backgroundColor = [UIColor blackColor];
         
         backgroundImage1 = [[UIImageView alloc] initWithFrame:frame];
-        [backgroundImage1 setContentMode:UIViewContentModeScaleToFill];
+        [backgroundImage1 setContentMode:UIViewContentModeScaleAspectFill];
         [backgroundImage1 setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
         [self addSubview:backgroundImage1];
 
         
         backgroundImage2 = [[UIImageView alloc] initWithFrame:frame];
-        [backgroundImage2 setContentMode:UIViewContentModeScaleToFill];
+        [backgroundImage2 setContentMode:UIViewContentModeScaleAspectFill];
         [backgroundImage2 setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
         [self addSubview:backgroundImage2];
         
         backgroundImage3 = [[UIImageView alloc] initWithFrame:frame];
-        [backgroundImage3 setContentMode:UIViewContentModeScaleToFill];
+        [backgroundImage3 setContentMode:UIViewContentModeScaleAspectFill];
         [backgroundImage3 setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
         [self addSubview:backgroundImage3];
         
@@ -63,13 +63,13 @@
             view.frame = CGRectOffset(view.frame, i*frame.size.width, 0);
             [scrollView addSubview:view];
         }
-        
+            
         //start timer
         timer =  [NSTimer scheduledTimerWithTimeInterval:3.0
-                                                  target:self
-                                                selector:@selector(tick)
-                                                userInfo:nil
-                                                 repeats:YES];
+                        target:self
+                        selector:@selector(tick)
+                        userInfo:nil
+                        repeats:YES];
         
         [self initShow];
     }
