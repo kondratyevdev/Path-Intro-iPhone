@@ -29,6 +29,24 @@
 	// Do any additional setup after loading the view.
 }
 
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
+    {
+        size = CGSizeMake(size.height, size.width);
+    }
+    else {
+        size = CGSizeMake(size.width, size.height);
+    }
+
+    IntroControll *introControll = (IntroControll *)self.view;
+    [self.view setFrame:CGRectMake(0, 0, size.width, size.height)];
+    [introControll updateView:CGRectMake(0, 0, size.width, size.height)];
+    
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

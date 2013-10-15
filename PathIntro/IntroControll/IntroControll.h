@@ -12,9 +12,12 @@
     NSTimer *timer;
     
     int currentPhotoNum;
+    
+    BOOL islandscape;
 }
 
 - (id)initWithFrame:(CGRect)frame pages:(NSArray*)pages;
+- (void) updateView:(CGRect)frame;
 
 
 @end
